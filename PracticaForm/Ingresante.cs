@@ -35,36 +35,10 @@ namespace PracticaForm
             this.Pais = pais;
         }
 
-        public override String ToString()
+        public String Mostrar()
         {
-            return Nombre + "\n" + Direccion + "\n" + "edad: " + Edad + "\n" + " Cuit:" + Cuit + "\n" + "Genero :" + Genero + "\n" + Pais;
+            StringBuilder contenido = new StringBuilder(Nombre + "\n" + Direccion + "\n" + "edad: " + Edad + "\n" + "Cuit:" + Cuit + "\n" + "Genero :" + Genero + "\n" + Pais + "\n" + "Curso/s: \n" + curso[0] + "\n" + curso[1] + "\n" + curso[2]);
+            return contenido.ToString();
         }
-
-        public String ToStringCursos() {
-            return "Los cursos seleccionados son: \n" + curso[0] + "\n" + curso[1] + "\n" + curso[2];
-        }
-
-
-        /*public void Guardar()
-        {
-            //guardar en archivo 
-
-            try
-            {
-
-            }
-            catch ()
-            {
-
-            }
-            //catch ()
-            {
-
-            }
-            finally {
-
-
-            }
-        }*/
     }
 }

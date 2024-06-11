@@ -58,6 +58,30 @@ namespace PracticaForm
             }
         }
 
+        public static bool ValidarNombreDireccion(string nombre, string direccion)
+        {
+            if (nombre == "" || direccion == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool ValidarCursos(string c1, string c2, string c3)
+        {
+            if (c1 == "" && c2 == "" && c3 == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public static void mError(Form actual, string mensaje)
         {
             MessageBox.Show(actual, mensaje, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -88,8 +112,16 @@ namespace PracticaForm
             MessageBox.Show(actual, mensaje, "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-
-
-
+        public static bool mAceptar(Form actual, string mensaje)
+        {
+            if (MessageBox.Show(actual, mensaje, "", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
