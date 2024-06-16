@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing.Text;
+using System.IO;
 
 namespace PracticaForm
 {
@@ -21,7 +23,7 @@ namespace PracticaForm
             string c2 = chkCplus.Checked ? chkCplus.Text.Trim() : "";
             string c3 = chkJavaScript.Checked ? chkJavaScript.Text.Trim() : "";
 
-            if (Funciones.ValidaCuit(cuit) && Funciones.ValidarNombreDireccion(nombre,direccion) && Funciones.ValidarCursos(c1,c2,c3))
+            if ((!Funciones.ValidaCuit(cuit)/*negue su valor para provar codigo con cuits falsos*/) && Funciones.ValidarNombreDireccion(nombre,direccion) && Funciones.ValidarCursos(c1,c2,c3))
             {
                 string genero = "";
                 if (rbFemenino.Checked) genero = rbFemenino.Text.Trim();
@@ -55,8 +57,90 @@ namespace PracticaForm
                 {
                     //if (MessageBox.Show(ing.ToStringCursos(), "Cursos Inscripto", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     //{
-                        //ing.Guardar();
-                        this.Vaciar();
+                    //ing.Guardar();
+                    /*if (OperatingSystem.IsWindows())
+                    { 
+                        string directorio = Directory.GetCurrentDirectory();
+                        MessageBox.Show(directorio);
+                    }*/
+                    char separador = Path.DirectorySeparatorChar;
+                    string carpeta = separador+"Inscriptos";
+                    string archivo = "";
+                    if (ing.Curso[0].CompareTo("C#") == 0)
+                    {
+                        archivo = "Curso_C#.txt";
+                        MessageBox.Show("." + separador + archivo);
+                        int registros = 0;
+                        HashSet<string> cuitsRegistrados = new HashSet<string>();
+                        if (File.Exists("."+separador+archivo))
+                        {
+                            StreamReader linea = new StreamReader("." + separador + archivo);
+                            string data = "";
+                            try
+                            {
+                                while (data != null)
+                                {
+                                    data = linea.ReadLine();
+                                    if (data != null)
+                                    {
+                                        MessageBox.Show(data);
+                                        int d1 = data.IndexOf('|');
+                                        int d2 = data.IndexOf('|', d1 + 1);
+                                        int d3 = data.IndexOf('|', d2 + 1);
+                                        int d4 = data.IndexOf('|', d3 + 1);
+                                        string cuitPersonasRegistradas = data.Substring(d3 + 1, (d4 - d3 - 1));
+                                        MessageBox.Show(cuitPersonasRegistradas);
+                                        cuitsRegistrados.Add(cuitPersonasRegistradas);
+                                        registros++;
+                                    }
+                                }
+                                MessageBox.Show($"{registros}");
+                                linea.Close();
+                                linea.Dispose();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.ToString());
+                                Console.WriteLine(ex.HResult);
+                                Console.WriteLine(ex.Message);
+                            }
+                            finally
+                            {
+                                linea.Close();
+                                linea.Dispose();
+                            }
+                            
+                        }
+                        if (!cuitsRegistrados.Contains(ing.Cuit))
+                        {
+                            if (registros < 40)
+                            {
+                                StreamWriter streamWriter = new StreamWriter("." + separador + archivo, true);
+                                try
+                                {
+                                    streamWriter.WriteLine(ing.Nombre + "|" + ing.Direccion + "|" + ing.Edad + "|" + ing.Cuit + "|" + ing.Pais + "|" + ing.Genero + "|" + ing.Curso[0]);
+                                    streamWriter.Close();
+                                    streamWriter.Dispose();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.ToString());
+                                    Console.WriteLine(ex.HResult);
+                                    Console.WriteLine(ex.Message);
+                                }
+                                finally
+                                {
+                                    if (streamWriter is not null)
+                                    {
+                                        streamWriter.Close();
+                                        streamWriter.Dispose();
+                                    }
+                                }
+                            }
+                            else MessageBox.Show("No se pudo inscribir  -->  Cupo Lleno");
+                        }else MessageBox.Show("No se pudo inscribir  -->  Persona con mismo cuit ya inscripta");
+                    }
+                    this.Vaciar();
                     //}
                     //else
                     //{
