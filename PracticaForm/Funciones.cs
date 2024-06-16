@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -121,6 +123,70 @@ namespace PracticaForm
             else
             {
                 return false;
+            }
+        }
+
+        public static int LeerRegistros(StreamReader linea, HashSet<string> cuitsRegistrados)
+        {
+            string data = "";
+            int registros = 0;
+            try
+            {
+                while (data != null)
+                {
+                    data = linea.ReadLine();
+                    if (data != null)
+                    {
+                        MessageBox.Show(data);
+                        int d1 = data.IndexOf('|');
+                        int d2 = data.IndexOf('|', d1 + 1);
+                        int d3 = data.IndexOf('|', d2 + 1);
+                        int d4 = data.IndexOf('|', d3 + 1);
+                        string cuitPersonasRegistradas = data.Substring(d3 + 1, (d4 - d3 - 1));
+                        MessageBox.Show(cuitPersonasRegistradas);
+                        cuitsRegistrados.Add(cuitPersonasRegistradas);
+                        registros++;
+                    }
+                }
+                MessageBox.Show($"{registros}");
+                linea.Close();
+                linea.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.HResult);
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                linea.Close();
+                linea.Dispose();
+            }
+            return registros;
+        }
+
+        public static void EscribirRegistro(StreamWriter streamWriter, Ingresante ing, int curso)
+        {
+            try
+            {
+                streamWriter.WriteLine(ing.Nombre + "|" + ing.Direccion + "|" + ing.Edad + "|" + ing.Cuit + "|" + ing.Pais + "|" + ing.Genero + "|" + ing.Curso[curso]);
+                streamWriter.Close();
+                streamWriter.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.HResult);
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (streamWriter is not null)
+                {
+                    streamWriter.Close();
+                    streamWriter.Dispose();
+                }
             }
         }
     }

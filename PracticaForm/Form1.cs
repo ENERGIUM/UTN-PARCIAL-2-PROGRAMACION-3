@@ -66,6 +66,7 @@ namespace PracticaForm
                     char separador = Path.DirectorySeparatorChar;
                     string carpeta = separador+"Inscriptos";
                     string archivo = "";
+
                     if (ing.Curso[0].CompareTo("C#") == 0)
                     {
                         archivo = "Curso_C#.txt";
@@ -75,70 +76,61 @@ namespace PracticaForm
                         if (File.Exists("."+separador+archivo))
                         {
                             StreamReader linea = new StreamReader("." + separador + archivo);
-                            string data = "";
-                            try
-                            {
-                                while (data != null)
-                                {
-                                    data = linea.ReadLine();
-                                    if (data != null)
-                                    {
-                                        MessageBox.Show(data);
-                                        int d1 = data.IndexOf('|');
-                                        int d2 = data.IndexOf('|', d1 + 1);
-                                        int d3 = data.IndexOf('|', d2 + 1);
-                                        int d4 = data.IndexOf('|', d3 + 1);
-                                        string cuitPersonasRegistradas = data.Substring(d3 + 1, (d4 - d3 - 1));
-                                        MessageBox.Show(cuitPersonasRegistradas);
-                                        cuitsRegistrados.Add(cuitPersonasRegistradas);
-                                        registros++;
-                                    }
-                                }
-                                MessageBox.Show($"{registros}");
-                                linea.Close();
-                                linea.Dispose();
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex.ToString());
-                                Console.WriteLine(ex.HResult);
-                                Console.WriteLine(ex.Message);
-                            }
-                            finally
-                            {
-                                linea.Close();
-                                linea.Dispose();
-                            }
-                            
+                            registros = Funciones.LeerRegistros(linea, cuitsRegistrados);
                         }
                         if (!cuitsRegistrados.Contains(ing.Cuit))
                         {
                             if (registros < 40)
                             {
                                 StreamWriter streamWriter = new StreamWriter("." + separador + archivo, true);
-                                try
-                                {
-                                    streamWriter.WriteLine(ing.Nombre + "|" + ing.Direccion + "|" + ing.Edad + "|" + ing.Cuit + "|" + ing.Pais + "|" + ing.Genero + "|" + ing.Curso[0]);
-                                    streamWriter.Close();
-                                    streamWriter.Dispose();
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine(ex.ToString());
-                                    Console.WriteLine(ex.HResult);
-                                    Console.WriteLine(ex.Message);
-                                }
-                                finally
-                                {
-                                    if (streamWriter is not null)
-                                    {
-                                        streamWriter.Close();
-                                        streamWriter.Dispose();
-                                    }
-                                }
+                                Funciones.EscribirRegistro(streamWriter, ing, 0);
                             }
-                            else MessageBox.Show("No se pudo inscribir  -->  Cupo Lleno");
-                        }else MessageBox.Show("No se pudo inscribir  -->  Persona con mismo cuit ya inscripta");
+                            else MessageBox.Show("No se pudo inscribir en Curso C#  -->  Cupo Lleno");
+                        }else MessageBox.Show("No se pudo inscribir en Curso C# -->  Persona con mismo CUIT ya inscripta");
+                    }
+                    if (ing.Curso[1].CompareTo("C++") == 0)
+                    {
+                        archivo = "Curso_C++.txt";
+                        MessageBox.Show("." + separador + archivo);
+                        int registros = 0;
+                        HashSet<string> cuitsRegistrados = new HashSet<string>();
+                        if (File.Exists("." + separador + archivo))
+                        {
+                            StreamReader linea = new StreamReader("." + separador + archivo);
+                            registros = Funciones.LeerRegistros(linea, cuitsRegistrados);
+                        }
+                        if (!cuitsRegistrados.Contains(ing.Cuit))
+                        {
+                            if (registros < 40)
+                            {
+                                StreamWriter streamWriter = new StreamWriter("." + separador + archivo, true);
+                                Funciones.EscribirRegistro(streamWriter, ing, 1);
+                            }
+                            else MessageBox.Show("No se pudo inscribir en Curso C++  -->  Cupo Lleno");
+                        }
+                        else MessageBox.Show("No se pudo inscribir en Curso C++ -->  Persona con mismo CUIT ya inscripta");
+                    }
+                    if (ing.Curso[2].CompareTo("JavaScript") == 0)
+                    {
+                        archivo = "Curso_JavaScript.txt";
+                        MessageBox.Show("." + separador + archivo);
+                        int registros = 0;
+                        HashSet<string> cuitsRegistrados = new HashSet<string>();
+                        if (File.Exists("." + separador + archivo))
+                        {
+                            StreamReader linea = new StreamReader("." + separador + archivo);
+                            registros = Funciones.LeerRegistros(linea, cuitsRegistrados);
+                        }
+                        if (!cuitsRegistrados.Contains(ing.Cuit))
+                        {
+                            if (registros < 40)
+                            {
+                                StreamWriter streamWriter = new StreamWriter("." + separador + archivo, true);
+                                Funciones.EscribirRegistro(streamWriter, ing, 2);
+                            }
+                            else MessageBox.Show("No se pudo inscribir en Curso JavaScript  -->  Cupo Lleno");
+                        }
+                        else MessageBox.Show("No se pudo inscribir en Curso JavaScript -->  Persona con mismo CUIT ya inscripta");
                     }
                     this.Vaciar();
                     //}
