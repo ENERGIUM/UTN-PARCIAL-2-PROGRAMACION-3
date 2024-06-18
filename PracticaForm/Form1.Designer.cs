@@ -236,7 +236,6 @@
             lbPais.Name = "lbPais";
             lbPais.Size = new Size(345, 96);
             lbPais.TabIndex = 7;
-            lbPais.SelectedIndexChanged += lbPais_SelectedIndexChanged;
             // 
             // label4
             // 
