@@ -23,48 +23,44 @@ namespace PracticaForm
             string c2 = chkCplus.Checked ? chkCplus.Text.Trim() : "";
             string c3 = chkJavaScript.Checked ? chkJavaScript.Text.Trim() : "";
 
-            if ((!Funciones.ValidaCuit(cuit)/*negue su valor para provar codigo con cuits falsos*/) && Funciones.ValidarNombreDireccion(nombre,direccion) && Funciones.ValidarCursos(c1,c2,c3))
+
+            try
             {
+                if (Funciones.ValidarNombreDireccion(nombre, direccion))
+                {
+                    throw new DatosInvalidos("Por favor verifique que los campos de Nombre y Direccion esten completos");
+                }
+                if (Funciones.ValidarCursos(c1, c2, c3))
+                {
+                    throw new DatosInvalidos("Por favor elija un curso");
+                }
+                if (!Funciones.ValidaCuit(cuit))
+                {
+                    throw new DatosInvalidos("Por favor ingrese un cuit valido");
+
+                }
+
                 string genero = "";
                 if (rbFemenino.Checked) genero = rbFemenino.Text.Trim();
                 if (rbMasculino.Checked) genero = rbMasculino.Text.Trim();
                 if (rbNoBinario.Checked) genero = rbNoBinario.Text.Trim();
 
-                //string c1 = chkc.Checked ? chkc.Text.Trim() : "";
-                //string c2 = chkCplus.Checked ? chkCplus.Text.Trim() : "";
-                //string c3 = chkJavaScript.Checked ? chkJavaScript.Text.Trim() : "";
 
                 string[] curso = new string[3];
-                //if (c1 == "" && c2 == "" && c3 == "")
-                //{
-                    //MessageBox.Show("Seleccione una opción para curso");
-                //}
-                //else
-                //{
-                    curso[0] = c1;
-                    curso[1] = c2;
-                    curso[2] = c3;
-                //}
+                curso[0] = c1;
+                curso[1] = c2;
+                curso[2] = c3;
+                
 
                 string pais = lbPais.Text.Trim();
 
                 Ingresante ing = new Ingresante(nombre, direccion, edad, cuit, genero, pais, curso);
 
-       
 
-          //      if (MessageBox.Show(ing.ToString(), "Datos Ingresante", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
                 if (Funciones.mAceptar(this, "Datos Ingresante \n" + ing.Mostrar()))
                 {
-                    //if (MessageBox.Show(ing.ToStringCursos(), "Cursos Inscripto", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                    //{
-                    //ing.Guardar();
-                    /*if (OperatingSystem.IsWindows())
-                    { 
-                        string directorio = Directory.GetCurrentDirectory();
-                        MessageBox.Show(directorio);
-                    }*/
                     char separador = Path.DirectorySeparatorChar;
-                    string carpeta = separador+"Inscriptos";
+                    string carpeta = separador + "Inscriptos";
                     string archivo = "";
 
                     if (ing.Curso[0].CompareTo("C#") == 0)
@@ -73,7 +69,7 @@ namespace PracticaForm
                         MessageBox.Show("." + separador + archivo);
                         int registros = 0;
                         HashSet<string> cuitsRegistrados = new HashSet<string>();
-                        if (File.Exists("."+separador+archivo))
+                        if (File.Exists("." + separador + archivo))
                         {
                             StreamReader linea = new StreamReader("." + separador + archivo);
                             registros = Funciones.LeerRegistros(linea, cuitsRegistrados);
@@ -86,8 +82,10 @@ namespace PracticaForm
                                 Funciones.EscribirRegistro(streamWriter, ing, 0);
                             }
                             else MessageBox.Show("No se pudo inscribir en Curso C#  -->  Cupo Lleno");
-                        }else MessageBox.Show("No se pudo inscribir en Curso C# -->  Persona con mismo CUIT ya inscripta");
+                        }
+                        else MessageBox.Show("No se pudo inscribir en Curso C# -->  Persona con mismo CUIT ya inscripta");
                     }
+
                     if (ing.Curso[1].CompareTo("C++") == 0)
                     {
                         archivo = "Curso_C++.txt";
@@ -110,6 +108,7 @@ namespace PracticaForm
                         }
                         else MessageBox.Show("No se pudo inscribir en Curso C++ -->  Persona con mismo CUIT ya inscripta");
                     }
+
                     if (ing.Curso[2].CompareTo("JavaScript") == 0)
                     {
                         archivo = "Curso_JavaScript.txt";
@@ -133,11 +132,6 @@ namespace PracticaForm
                         else MessageBox.Show("No se pudo inscribir en Curso JavaScript -->  Persona con mismo CUIT ya inscripta");
                     }
                     this.Vaciar();
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("verifique los datos e intente nuevamente");
-                    //}
 
                 }
                 else
@@ -147,21 +141,11 @@ namespace PracticaForm
                     this.Vaciar();
 
                 }
-
             }
-            else
+            catch (DatosInvalidos x)
             {
-                if (!Funciones.ValidaCuit(cuit))
-                    MessageBox.Show("Ingrese un Cuit Valido");
-                if (!Funciones.ValidarNombreDireccion(nombre, direccion))
-                    MessageBox.Show("Complete los campos de nombre y direccion");
-                if (!Funciones.ValidarCursos(c1,c2,c3))
-                    MessageBox.Show("Seleccione una opción para curso");
+                MessageBox.Show(x.Message);
             }
-
-
-
-
 
         }
 

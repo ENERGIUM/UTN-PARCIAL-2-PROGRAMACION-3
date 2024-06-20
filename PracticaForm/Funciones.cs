@@ -64,11 +64,11 @@ namespace PracticaForm
         {
             if (nombre == "" || direccion == "")
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
@@ -76,11 +76,11 @@ namespace PracticaForm
         {
             if (c1 == "" && c2 == "" && c3 == "")
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
@@ -105,8 +105,6 @@ namespace PracticaForm
             {
                 return false;
             }
-            // MessageBox.Show(actual, mensaje, "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            // MessageBox.Show ("Do you want to exit?", "My Application",  MessageBoxButtons.YesNo, MessageBoxIcon.Question)  
         }
 
         public static void mAdvertencia(Form actual, string mensaje)
