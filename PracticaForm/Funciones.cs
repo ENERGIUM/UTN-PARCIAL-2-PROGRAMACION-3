@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace PracticaForm
 {
@@ -135,18 +137,18 @@ namespace PracticaForm
                     data = linea.ReadLine();
                     if (data != null)
                     {
-                        MessageBox.Show(data);
+                        //MessageBox.Show(data);
                         int d1 = data.IndexOf('|');
                         int d2 = data.IndexOf('|', d1 + 1);
                         int d3 = data.IndexOf('|', d2 + 1);
                         int d4 = data.IndexOf('|', d3 + 1);
                         string cuitPersonasRegistradas = data.Substring(d3 + 1, (d4 - d3 - 1));
-                        MessageBox.Show(cuitPersonasRegistradas);
+                        //MessageBox.Show(cuitPersonasRegistradas);
                         cuitsRegistrados.Add(cuitPersonasRegistradas);
                         registros++;
                     }
                 }
-                MessageBox.Show($"{registros}");
+                //MessageBox.Show($"{registros}");
                 linea.Close();
                 linea.Dispose();
             }
@@ -185,6 +187,190 @@ namespace PracticaForm
                     streamWriter.Close();
                     streamWriter.Dispose();
                 }
+            }
+        }
+
+        public static void LeerRegistrosYSerializarXML(StreamReader linea, Ingresante inscripto, string rutaArchivoXML, int numeroCurso)
+        {
+            string data = "";
+            try
+            {
+                try
+                {
+                    if (File.Exists(rutaArchivoXML))
+                    {
+                        File.Delete(rutaArchivoXML);
+                    }
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    Console.WriteLine("Error, no se tienen permisos suficientes para leer ni escribir en el directorio ");
+                }
+                catch (IOException ex)
+                {
+                    Console.WriteLine("El archivo está en uso por otro proceso o ocurrió un error de E/S.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error inesperado");
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.HResult);
+                    Console.WriteLine(ex.StackTrace);
+                }
+                while (data != null)
+                {
+                    data = linea.ReadLine();
+                    if (data != null)
+                    {
+                        //MessageBox.Show(data);
+                        int d1 = data.IndexOf('|');
+                        inscripto.Nombre = data.Substring(0, d1);
+                        int d2 = data.IndexOf('|', d1 + 1);
+                        inscripto.Direccion = data.Substring(d1+1, d2-d1-1);
+                        int d3 = data.IndexOf('|', d2 + 1);
+                        inscripto.Edad = int.Parse((data.Substring(d2 + 1, d3 - d2 - 1)));
+                        int d4 = data.IndexOf('|', d3 + 1);
+                        inscripto.Cuit = data.Substring(d3 + 1, (d4 - d3 - 1));
+                        int d5 = data.IndexOf('|', d4 + 1);
+                        inscripto.Pais = data.Substring(d4 + 1, (d5 - d4 - 1));
+                        int d6 = data.IndexOf('|', d5 + 1);
+                        inscripto.Genero = data.Substring(d5 + 1, (d6 - d5 - 1));
+                        int d7 = data.Length;
+                        inscripto.Curso[numeroCurso] = data.Substring(d6 + 1, (d7 - d6 - 1));
+                        //MessageBox.Show(inscripto.Mostrar());
+
+                        StreamWriter streamWriter = null;
+                        try
+                        {
+                            using (streamWriter = new StreamWriter(rutaArchivoXML, true))
+                            {
+                                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Ingresante));
+                                xmlSerializer.Serialize(streamWriter, inscripto);
+                            }
+                            streamWriter.Close();
+                            streamWriter.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            Console.WriteLine(ex.HResult);
+                            Console.WriteLine(ex.StackTrace);
+                        }
+                        finally
+                        {
+                            if (streamWriter is not null)
+                            {
+                                streamWriter.Close();
+                                streamWriter.Dispose();
+                            }
+                        }
+                    }
+                }
+                linea.Close();
+                linea.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.HResult);
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                linea.Close();
+                linea.Dispose();
+            }
+        }
+
+        public static void LeerRegistrosYSerializarJSON(StreamReader linea, Ingresante inscripto, string rutaArchivoJSON, int numeroCurso)
+        {
+            string data = "";
+            try
+            {
+                try
+                {
+                    if (File.Exists(rutaArchivoJSON))
+                    {
+                        File.Delete(rutaArchivoJSON);
+                    }
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    Console.WriteLine("Error, no se tienen permisos suficientes para leer ni escribir en el directorio ");
+                }
+                catch (IOException ex)
+                {
+                    Console.WriteLine("El archivo está en uso por otro proceso o ocurrió un error de E/S.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error inesperado");
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.HResult);
+                    Console.WriteLine(ex.StackTrace);
+                }
+                while (data != null)
+                {
+                    data = linea.ReadLine();
+                    if (data != null)
+                    {
+                        //MessageBox.Show(data);
+                        int d1 = data.IndexOf('|');
+                        inscripto.Nombre = data.Substring(0, d1);
+                        int d2 = data.IndexOf('|', d1 + 1);
+                        inscripto.Direccion = data.Substring(d1 + 1, d2 - d1 - 1);
+                        int d3 = data.IndexOf('|', d2 + 1);
+                        inscripto.Edad = int.Parse((data.Substring(d2 + 1, d3 - d2 - 1)));
+                        int d4 = data.IndexOf('|', d3 + 1);
+                        inscripto.Cuit = data.Substring(d3 + 1, (d4 - d3 - 1));
+                        int d5 = data.IndexOf('|', d4 + 1);
+                        inscripto.Pais = data.Substring(d4 + 1, (d5 - d4 - 1));
+                        int d6 = data.IndexOf('|', d5 + 1);
+                        inscripto.Genero = data.Substring(d5 + 1, (d6 - d5 - 1));
+                        int d7 = data.Length;
+                        inscripto.Curso[numeroCurso] = data.Substring(d6 + 1, (d7 - d6 - 1));
+                        //MessageBox.Show(inscripto.Mostrar());
+
+                        StreamWriter streamWriter = null;
+                        try
+                        {
+                            using (streamWriter = new StreamWriter(rutaArchivoJSON, true))
+                            {
+                                string jsonString = JsonSerializer.Serialize(inscripto);
+                                streamWriter.WriteLine(jsonString);
+                            }
+                            streamWriter.Close();
+                            streamWriter.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            Console.WriteLine(ex.HResult);
+                            Console.WriteLine(ex.StackTrace);
+                        }
+                        finally
+                        {
+                            if (streamWriter is not null)
+                            {
+                                streamWriter.Close();
+                                streamWriter.Dispose();
+                            }
+                        }
+                    }
+                }
+                linea.Close();
+                linea.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.HResult);
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                linea.Close();
+                linea.Dispose();
             }
         }
     }

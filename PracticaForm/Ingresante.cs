@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PracticaForm
 {
-    internal class Ingresante
+    public class Ingresante
     {
         string nombre;
         string direccion;
@@ -14,7 +14,7 @@ namespace PracticaForm
         string cuit;
         string genero;
         string pais;
-        string[] curso;
+        string[] curso = new string[] {" "," "," "}; //para evitar excepcion de objeto no inicializado => referencia nula
 
         public string Nombre { get => nombre; set => nombre = value; }
         public string Direccion { get => direccion; set => direccion = value; }
@@ -34,6 +34,8 @@ namespace PracticaForm
             this.Curso = curso;
             this.Pais = pais;
         }
+
+        public Ingresante() { }
 
         public String Mostrar()
         {
