@@ -37,7 +37,6 @@ namespace PracticaForm
                 if (!Funciones.ValidaCuit(cuit))
                 {
                     throw new DatosInvalidos("Por favor ingrese un cuit valido");
-
                 }
 
                 string genero = "";
@@ -62,6 +61,7 @@ namespace PracticaForm
                     char separador = Path.DirectorySeparatorChar;
                     string carpeta = separador + "Inscriptos";
                     string archivo = "";
+                    bool flagRegistroCShard = false, flagRegistroCPlus = false, flagRegistroJavascript = false;
 
                     if (ing.Curso[0].CompareTo("C#") == 0)
                     {
@@ -80,6 +80,7 @@ namespace PracticaForm
                             {
                                 StreamWriter streamWriter = new StreamWriter("." + separador + archivo, true);
                                 Funciones.EscribirRegistro(streamWriter, ing, 0);
+                                flagRegistroCShard = true;
                             }
                             else MessageBox.Show("No se pudo inscribir en Curso C#  -->  Cupo Lleno");
                         }
@@ -103,6 +104,7 @@ namespace PracticaForm
                             {
                                 StreamWriter streamWriter = new StreamWriter("." + separador + archivo, true);
                                 Funciones.EscribirRegistro(streamWriter, ing, 1);
+                                flagRegistroCPlus = true;
                             }
                             else MessageBox.Show("No se pudo inscribir en Curso C++  -->  Cupo Lleno");
                         }
@@ -126,13 +128,30 @@ namespace PracticaForm
                             {
                                 StreamWriter streamWriter = new StreamWriter("." + separador + archivo, true);
                                 Funciones.EscribirRegistro(streamWriter, ing, 2);
+                                flagRegistroJavascript = true;
                             }
                             else MessageBox.Show("No se pudo inscribir en Curso JavaScript  -->  Cupo Lleno");
                         }
                         else MessageBox.Show("No se pudo inscribir en Curso JavaScript -->  Persona con mismo CUIT ya inscripta");
                     }
+                    string mensaje = "Registro realizado en:\n ";
+                    if (flagRegistroCShard)
+                    {
+                        mensaje += "|#|-> C#\n";
+                    }
+                    if (flagRegistroCPlus)
+                    {
+                        mensaje += "|#|-> C++\n";
+                    }
+                    if (flagRegistroJavascript)
+                    {
+                        mensaje += "|#|-> Javascript\n";
+                    }
+                    if (flagRegistroCShard || flagRegistroCPlus || flagRegistroJavascript)
+                    {
+                        MessageBox.Show(mensaje);
+                    }
                     this.Vaciar();
-
                 }
                 else
                 {
