@@ -154,9 +154,7 @@ namespace PracticaForm
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-                Console.WriteLine(ex.HResult);
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("A ocurrido un error inesperado\n"+ ex.Message+"\n"+ ex.ToString()+"\n"+ ex.HResult+"\n");
             }
             finally
             {
@@ -176,9 +174,7 @@ namespace PracticaForm
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-                Console.WriteLine(ex.HResult);
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
             }
             finally
             {
@@ -193,6 +189,7 @@ namespace PracticaForm
         public static void LeerRegistrosYSerializarXML(StreamReader linea, Ingresante inscripto, string rutaArchivoXML, int numeroCurso)
         {
             string data = "";
+            bool flagCorrecto = true;
             try
             {
                 try
@@ -204,18 +201,15 @@ namespace PracticaForm
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    Console.WriteLine("Error, no se tienen permisos suficientes para leer ni escribir en el directorio ");
+                    MessageBox.Show("Error, no se tienen permisos suficientes para leer ni escribir en el directorio ");
                 }
                 catch (IOException ex)
                 {
-                    Console.WriteLine("El archivo está en uso por otro proceso o ocurrió un error de E/S.");
+                    MessageBox.Show("El archivo está en uso por otro proceso o ocurrió un error de E/S.");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error inesperado");
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.HResult);
-                    Console.WriteLine(ex.StackTrace);
+                    MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
                 }
                 while (data != null)
                 {
@@ -252,9 +246,8 @@ namespace PracticaForm
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine(ex.Message);
-                            Console.WriteLine(ex.HResult);
-                            Console.WriteLine(ex.StackTrace);
+                            MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
+                            flagCorrecto = false;
                         }
                         finally
                         {
@@ -266,14 +259,16 @@ namespace PracticaForm
                         }
                     }
                 }
+                if (flagCorrecto)
+                {
+                    MessageBox.Show("Serializacion XML Realizada con Exito");
+                }
                 linea.Close();
                 linea.Dispose();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-                Console.WriteLine(ex.HResult);
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
             }
             finally
             {
@@ -285,6 +280,7 @@ namespace PracticaForm
         public static void LeerRegistrosYSerializarJSON(StreamReader linea, Ingresante inscripto, string rutaArchivoJSON, int numeroCurso)
         {
             string data = "";
+            bool flagCorrecto = true;
             try
             {
                 try
@@ -296,18 +292,15 @@ namespace PracticaForm
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    Console.WriteLine("Error, no se tienen permisos suficientes para leer ni escribir en el directorio ");
+                    MessageBox.Show("Error, no se tienen permisos suficientes para leer ni escribir en el directorio ");
                 }
                 catch (IOException ex)
                 {
-                    Console.WriteLine("El archivo está en uso por otro proceso o ocurrió un error de E/S.");
+                    MessageBox.Show("El archivo está en uso por otro proceso o ocurrió un error de E/S.");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error inesperado");
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.HResult);
-                    Console.WriteLine(ex.StackTrace);
+                    MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
                 }
                 while (data != null)
                 {
@@ -344,9 +337,8 @@ namespace PracticaForm
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine(ex.Message);
-                            Console.WriteLine(ex.HResult);
-                            Console.WriteLine(ex.StackTrace);
+                            MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
+                            flagCorrecto = false;
                         }
                         finally
                         {
@@ -358,14 +350,16 @@ namespace PracticaForm
                         }
                     }
                 }
+                if (flagCorrecto)
+                {
+                    MessageBox.Show("Serializacion JSON Realizada con Exito");
+                }
                 linea.Close();
                 linea.Dispose();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-                Console.WriteLine(ex.HResult);
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
             }
             finally
             {

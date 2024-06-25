@@ -39,7 +39,7 @@ namespace PracticaForm
 
         public String Mostrar()
         {
-            StringBuilder contenido = new StringBuilder(Nombre + "\n" + Direccion + "\n" + "edad: " + Edad + "\n" + "Cuit:" + Cuit + "\n" + "Genero :" + Genero + "\n" + Pais + "\n" + "Curso/s: \n" + curso[0] + "\n" + curso[1] + "\n" + curso[2]);
+            StringBuilder contenido = new StringBuilder("Nombre: " + Nombre + "\n" + "Direccion: " + Direccion + "\n" + "Edad: " + Edad + "\n" + "Cuit:" + Cuit + "\n" + "Genero :" + Genero + "\n" + "Pais: " + Pais + "\n" + "Curso/s: \n" + curso[0] + "\n" + curso[1] + "\n" + curso[2]);
             return contenido.ToString();
         }
     }

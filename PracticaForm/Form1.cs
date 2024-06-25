@@ -66,7 +66,7 @@ namespace PracticaForm
                     if (ing.Curso[0].CompareTo("C#") == 0)
                     {
                         archivo = "Curso_C#.txt";
-                        MessageBox.Show("." + separador + archivo);
+                        //MessageBox.Show("." + separador + archivo);
                         int registros = 0;
                         HashSet<string> cuitsRegistrados = new HashSet<string>();
                         if (File.Exists("." + separador + archivo))
@@ -89,7 +89,7 @@ namespace PracticaForm
                     if (ing.Curso[1].CompareTo("C++") == 0)
                     {
                         archivo = "Curso_C++.txt";
-                        MessageBox.Show("." + separador + archivo);
+                        //MessageBox.Show("." + separador + archivo);
                         int registros = 0;
                         HashSet<string> cuitsRegistrados = new HashSet<string>();
                         if (File.Exists("." + separador + archivo))
@@ -112,7 +112,7 @@ namespace PracticaForm
                     if (ing.Curso[2].CompareTo("JavaScript") == 0)
                     {
                         archivo = "Curso_JavaScript.txt";
-                        MessageBox.Show("." + separador + archivo);
+                        //MessageBox.Show("." + separador + archivo);
                         int registros = 0;
                         HashSet<string> cuitsRegistrados = new HashSet<string>();
                         if (File.Exists("." + separador + archivo))

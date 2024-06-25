@@ -42,7 +42,7 @@ namespace PracticaForm
                 Ingresante inscripto = new Ingresante();
                 Funciones.LeerRegistrosYSerializarXML(linea, inscripto, "." + separador + archivoXML, 0);
             }
-            else MessageBox.Show("Error no existe ningun registro previo para Serializar");
+            else MessageBox.Show("#Error: no existe ningun registro previo para Serializar");
         }
 
         private void cursoCToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace PracticaForm
                 Ingresante inscripto = new Ingresante();
                 Funciones.LeerRegistrosYSerializarXML(linea, inscripto, "." + separador + archivoXML, 1);
             }
-            else MessageBox.Show("Error no existe ningun registro previo para Serializar");
+            else MessageBox.Show("#Error: no existe ningun registro previo para Serializar");
         }
 
         private void cursoJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace PracticaForm
                 Ingresante inscripto = new Ingresante();
                 Funciones.LeerRegistrosYSerializarXML(linea, inscripto, "." + separador + archivoXML, 2);
             }
-            else MessageBox.Show("Error no existe ningun registro previo para Serializar");
+            else MessageBox.Show("#Error: no existe ningun registro previo para Serializar");
         }
 
         private void cursoCToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace PracticaForm
                 Ingresante inscripto = new Ingresante();
                 Funciones.LeerRegistrosYSerializarJSON(linea, inscripto, "." + separador + archivoJSON, 0);
             }
-            else MessageBox.Show("Error no existe ningun registro previo para Serializar");
+            else MessageBox.Show("#Error: no existe ningun registro previo para Serializar");
         }
 
         private void cursoCToolStripMenuItem3_Click(object sender, EventArgs e)
@@ -98,7 +98,7 @@ namespace PracticaForm
                 Ingresante inscripto = new Ingresante();
                 Funciones.LeerRegistrosYSerializarJSON(linea, inscripto, "." + separador + archivoJSON, 1);
             }
-            else MessageBox.Show("Error no existe ningun registro previo para Serializar");
+            else MessageBox.Show("#Error: no existe ningun registro previo para Serializar");
         }
 
         private void cursoJavascriptToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -112,7 +112,7 @@ namespace PracticaForm
                 Ingresante inscripto = new Ingresante();
                 Funciones.LeerRegistrosYSerializarJSON(linea, inscripto, "." + separador + archivoJSON, 2);
             }
-            else MessageBox.Show("Error no existe ningun registro previo para Serializar");
+            else MessageBox.Show("#Error: no existe ningun registro previo para Serializar");
         }
     }
 }
