@@ -10,8 +10,15 @@ namespace PracticaForm
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Inicio());
+            if (!Environment.Is64BitOperatingSystem)
+            {
+                MessageBox.Show("Error no se soporta arquitectura que no sea 64 bits");
+            }
+            else
+            {
+                ApplicationConfiguration.Initialize();
+                Application.Run(new Inicio());
+            }
         }
     }
 }
