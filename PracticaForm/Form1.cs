@@ -59,7 +59,6 @@ namespace PracticaForm
                 if (Funciones.mAceptar(this, "Datos Ingresante \n" + ing.Mostrar()))
                 {
                     char separador = Path.DirectorySeparatorChar;
-                    string carpeta = separador + "Inscriptos";
                     string archivo = "";
                     bool flagRegistroCShard = false, flagRegistroCPlus = false, flagRegistroJavascript = false;
 
