@@ -23,12 +23,17 @@ namespace PracticaForm
             string c2 = chkCplus.Checked ? chkCplus.Text.Trim() : "";
             string c3 = chkJavaScript.Checked ? chkJavaScript.Text.Trim() : "";
 
-
+            string genero = "";
+                if (rbFemenino.Checked) genero = rbFemenino.Text.Trim();
+                if (rbMasculino.Checked) genero = rbMasculino.Text.Trim();
+                if (rbNoBinario.Checked) genero = rbNoBinario.Text.Trim();
+            
+            string pais = lbPais.Text.Trim();
             try
             {
-                if (Funciones.ValidarNombreDireccion(nombre, direccion))
+                if (Funciones.ValidarDatos(nombre, direccion, genero, pais))
                 {
-                    throw new DatosInvalidos("Por favor verifique que los campos de Nombre y Direccion esten completos");
+                    throw new DatosInvalidos("Por favor verifique que todos los campos esten completos\nCompruebe Nombre, direccion, genero o pais");
                 }
                 if (Funciones.ValidarCursos(c1, c2, c3))
                 {
@@ -37,12 +42,7 @@ namespace PracticaForm
                 if (!Funciones.ValidaCuit(cuit))
                 {
                     throw new DatosInvalidos("Por favor ingrese un cuit valido");
-                }
-
-                string genero = "";
-                if (rbFemenino.Checked) genero = rbFemenino.Text.Trim();
-                if (rbMasculino.Checked) genero = rbMasculino.Text.Trim();
-                if (rbNoBinario.Checked) genero = rbNoBinario.Text.Trim();
+                }  
 
 
                 string[] curso = new string[3];
@@ -51,7 +51,7 @@ namespace PracticaForm
                 curso[2] = c3;
                 
 
-                string pais = lbPais.Text.Trim();
+                
 
                 Ingresante ing = new Ingresante(nombre, direccion, edad, cuit, genero, pais, curso);
 
@@ -66,7 +66,6 @@ namespace PracticaForm
                     if (ing.Curso[0].CompareTo("C#") == 0)
                     {
                         archivo = "Curso_C#.txt";
-                        //MessageBox.Show("." + separador + archivo);
                         int registros = 0;
                         HashSet<string> cuitsRegistrados = new HashSet<string>();
                         if (File.Exists("." + separador + archivo))
@@ -90,7 +89,6 @@ namespace PracticaForm
                     if (ing.Curso[1].CompareTo("C++") == 0)
                     {
                         archivo = "Curso_C++.txt";
-                        //MessageBox.Show("." + separador + archivo);
                         int registros = 0;
                         HashSet<string> cuitsRegistrados = new HashSet<string>();
                         if (File.Exists("." + separador + archivo))
@@ -113,8 +111,6 @@ namespace PracticaForm
 
                     if (ing.Curso[2].CompareTo("JavaScript") == 0)
                     {
-                        archivo = "Curso_JavaScript.txt";
-                        //MessageBox.Show("." + separador + archivo);
                         int registros = 0;
                         HashSet<string> cuitsRegistrados = new HashSet<string>();
                         if (File.Exists("." + separador + archivo))

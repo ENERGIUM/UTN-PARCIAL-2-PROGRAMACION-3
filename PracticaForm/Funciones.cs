@@ -62,10 +62,10 @@ namespace PracticaForm
             }
         }
 
-        public static bool ValidarNombreDireccion(string nombre, string direccion)
+        public static bool ValidarDatos(string nombre, string direccion, string genero, string pais)
         {
-            if (nombre == "" || direccion == "")
-            {
+            if (nombre == "" || direccion == "" || genero == "" ||pais=="") { 
+            
                 return true;
             }
             else
@@ -84,34 +84,6 @@ namespace PracticaForm
             {
                 return false;
             }
-        }
-
-        public static void mError(Form actual, string mensaje)
-        {
-            MessageBox.Show(actual, mensaje, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        //Para mostrar mensaje de confirmación
-        public static void mOk(Form actual, string mensaje)
-        {
-            MessageBox.Show(actual, mensaje, "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-
-        public static bool mConsulta(Form actual, string mensaje)
-        {
-            if (MessageBox.Show(actual, mensaje, "CONSULTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public static void mAdvertencia(Form actual, string mensaje)
-        {
-            MessageBox.Show(actual, mensaje, "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         public static bool mAceptar(Form actual, string mensaje)
@@ -137,18 +109,15 @@ namespace PracticaForm
                     data = linea.ReadLine();
                     if (data != null)
                     {
-                        //MessageBox.Show(data);
                         int d1 = data.IndexOf('|');
                         int d2 = data.IndexOf('|', d1 + 1);
                         int d3 = data.IndexOf('|', d2 + 1);
                         int d4 = data.IndexOf('|', d3 + 1);
                         string cuitPersonasRegistradas = data.Substring(d3 + 1, (d4 - d3 - 1));
-                        //MessageBox.Show(cuitPersonasRegistradas);
                         cuitsRegistrados.Add(cuitPersonasRegistradas);
                         registros++;
                     }
                 }
-                //MessageBox.Show($"{registros}");
                 linea.Close();
                 linea.Dispose();
             }
@@ -216,7 +185,6 @@ namespace PracticaForm
                     data = linea.ReadLine();
                     if (data != null)
                     {
-                        //MessageBox.Show(data);
                         int d1 = data.IndexOf('|');
                         inscripto.Nombre = data.Substring(0, d1);
                         int d2 = data.IndexOf('|', d1 + 1);
@@ -231,7 +199,6 @@ namespace PracticaForm
                         inscripto.Genero = data.Substring(d5 + 1, (d6 - d5 - 1));
                         int d7 = data.Length;
                         inscripto.Curso[numeroCurso] = data.Substring(d6 + 1, (d7 - d6 - 1));
-                        //MessageBox.Show(inscripto.Mostrar());
 
                         StreamWriter streamWriter = null;
                         try
@@ -307,7 +274,6 @@ namespace PracticaForm
                     data = linea.ReadLine();
                     if (data != null)
                     {
-                        //MessageBox.Show(data);
                         int d1 = data.IndexOf('|');
                         inscripto.Nombre = data.Substring(0, d1);
                         int d2 = data.IndexOf('|', d1 + 1);
@@ -322,7 +288,6 @@ namespace PracticaForm
                         inscripto.Genero = data.Substring(d5 + 1, (d6 - d5 - 1));
                         int d7 = data.Length;
                         inscripto.Curso[numeroCurso] = data.Substring(d6 + 1, (d7 - d6 - 1));
-                        //MessageBox.Show(inscripto.Mostrar());
 
                         StreamWriter streamWriter = null;
                         try

@@ -271,6 +271,7 @@
             Controls.Add(gbDetalleUsuario);
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Registro";
             gbDetalleUsuario.ResumeLayout(false);
             gbDetalleUsuario.PerformLayout();

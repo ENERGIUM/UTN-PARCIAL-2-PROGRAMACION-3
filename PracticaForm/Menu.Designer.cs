@@ -50,8 +50,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { inicioToolStripMenuItem, exportacionesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(5, 2, 0, 2);
-            menuStrip1.Size = new Size(700, 24);
+            menuStrip1.Padding = new Padding(6, 3, 0, 3);
+            menuStrip1.Size = new Size(1482, 30);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -59,54 +59,54 @@
             // 
             inicioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nuevoRegistroToolStripMenuItem, modificarEliminarRegistroToolStripMenuItem });
             inicioToolStripMenuItem.Name = "inicioToolStripMenuItem";
-            inicioToolStripMenuItem.Size = new Size(48, 20);
+            inicioToolStripMenuItem.Size = new Size(59, 24);
             inicioToolStripMenuItem.Text = "Inicio";
             // 
             // nuevoRegistroToolStripMenuItem
             // 
             nuevoRegistroToolStripMenuItem.Name = "nuevoRegistroToolStripMenuItem";
-            nuevoRegistroToolStripMenuItem.Size = new Size(222, 22);
+            nuevoRegistroToolStripMenuItem.Size = new Size(279, 26);
             nuevoRegistroToolStripMenuItem.Text = "Nuevo registro";
             nuevoRegistroToolStripMenuItem.Click += nuevoRegistroToolStripMenuItem_Click;
             // 
             // modificarEliminarRegistroToolStripMenuItem
             // 
             modificarEliminarRegistroToolStripMenuItem.Name = "modificarEliminarRegistroToolStripMenuItem";
-            modificarEliminarRegistroToolStripMenuItem.Size = new Size(222, 22);
+            modificarEliminarRegistroToolStripMenuItem.Size = new Size(279, 26);
             modificarEliminarRegistroToolStripMenuItem.Text = "Modificar / Eliminar registro";
             // 
             // exportacionesToolStripMenuItem
             // 
             exportacionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { serializaciónXMLToolStripMenuItem, serializaciónJsonToolStripMenuItem });
             exportacionesToolStripMenuItem.Name = "exportacionesToolStripMenuItem";
-            exportacionesToolStripMenuItem.Size = new Size(93, 20);
+            exportacionesToolStripMenuItem.Size = new Size(116, 24);
             exportacionesToolStripMenuItem.Text = "Exportaciones";
             // 
             // serializaciónXMLToolStripMenuItem
             // 
             serializaciónXMLToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cursoCToolStripMenuItem, cursoCToolStripMenuItem1, cursoJavascriptToolStripMenuItem });
             serializaciónXMLToolStripMenuItem.Name = "serializaciónXMLToolStripMenuItem";
-            serializaciónXMLToolStripMenuItem.Size = new Size(180, 22);
+            serializaciónXMLToolStripMenuItem.Size = new Size(209, 26);
             serializaciónXMLToolStripMenuItem.Text = "Serialización XML";
             // 
             // cursoCToolStripMenuItem
             // 
             cursoCToolStripMenuItem.Name = "cursoCToolStripMenuItem";
-            cursoCToolStripMenuItem.Size = new Size(180, 22);
+            cursoCToolStripMenuItem.Size = new Size(197, 26);
             cursoCToolStripMenuItem.Text = "Curso C#";
             cursoCToolStripMenuItem.Click += cursoCToolStripMenuItem_Click;
             // 
             // cursoCToolStripMenuItem1
             // 
             cursoCToolStripMenuItem1.Name = "cursoCToolStripMenuItem1";
-            cursoCToolStripMenuItem1.Size = new Size(180, 22);
+            cursoCToolStripMenuItem1.Size = new Size(197, 26);
             cursoCToolStripMenuItem1.Text = "Curso C++";
             cursoCToolStripMenuItem1.Click += cursoCToolStripMenuItem1_Click;
             // 
             // cursoJavascriptToolStripMenuItem
             // 
             cursoJavascriptToolStripMenuItem.Name = "cursoJavascriptToolStripMenuItem";
-            cursoJavascriptToolStripMenuItem.Size = new Size(180, 22);
+            cursoJavascriptToolStripMenuItem.Size = new Size(197, 26);
             cursoJavascriptToolStripMenuItem.Text = "Curso Javascript";
             cursoJavascriptToolStripMenuItem.Click += cursoJavascriptToolStripMenuItem_Click;
             // 
@@ -114,40 +114,40 @@
             // 
             serializaciónJsonToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cursoCToolStripMenuItem2, cursoCToolStripMenuItem3, cursoJavascriptToolStripMenuItem1 });
             serializaciónJsonToolStripMenuItem.Name = "serializaciónJsonToolStripMenuItem";
-            serializaciónJsonToolStripMenuItem.Size = new Size(180, 22);
+            serializaciónJsonToolStripMenuItem.Size = new Size(209, 26);
             serializaciónJsonToolStripMenuItem.Text = "Serialización Json";
             // 
             // cursoCToolStripMenuItem2
             // 
             cursoCToolStripMenuItem2.Name = "cursoCToolStripMenuItem2";
-            cursoCToolStripMenuItem2.Size = new Size(180, 22);
+            cursoCToolStripMenuItem2.Size = new Size(197, 26);
             cursoCToolStripMenuItem2.Text = "Curso C#";
             cursoCToolStripMenuItem2.Click += cursoCToolStripMenuItem2_Click;
             // 
             // cursoCToolStripMenuItem3
             // 
             cursoCToolStripMenuItem3.Name = "cursoCToolStripMenuItem3";
-            cursoCToolStripMenuItem3.Size = new Size(180, 22);
+            cursoCToolStripMenuItem3.Size = new Size(197, 26);
             cursoCToolStripMenuItem3.Text = "Curso C++";
             cursoCToolStripMenuItem3.Click += cursoCToolStripMenuItem3_Click;
             // 
             // cursoJavascriptToolStripMenuItem1
             // 
             cursoJavascriptToolStripMenuItem1.Name = "cursoJavascriptToolStripMenuItem1";
-            cursoJavascriptToolStripMenuItem1.Size = new Size(180, 22);
+            cursoJavascriptToolStripMenuItem1.Size = new Size(197, 26);
             cursoJavascriptToolStripMenuItem1.Text = "Curso Javascript";
             cursoJavascriptToolStripMenuItem1.Click += cursoJavascriptToolStripMenuItem1_Click;
             // 
             // Inicio
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
+            ClientSize = new Size(1482, 953);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Inicio";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
