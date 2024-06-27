@@ -76,7 +76,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(10, 202);
             label5.Name = "label5";
-            label5.Size = new Size(62, 23);
+            label5.Size = new Size(51, 19);
             label5.TabIndex = 7;
             label5.Text = "CUIT/L";
             // 
@@ -85,7 +85,7 @@
             mtbCUIT.Location = new Point(131, 202);
             mtbCUIT.Mask = "00-00000000-0";
             mtbCUIT.Name = "mtbCUIT";
-            mtbCUIT.Size = new Size(177, 30);
+            mtbCUIT.Size = new Size(177, 25);
             mtbCUIT.TabIndex = 6;
             // 
             // nupEdad
@@ -94,7 +94,7 @@
             nupEdad.Maximum = new decimal(new int[] { 120, 0, 0, 0 });
             nupEdad.Minimum = new decimal(new int[] { 18, 0, 0, 0 });
             nupEdad.Name = "nupEdad";
-            nupEdad.Size = new Size(177, 30);
+            nupEdad.Size = new Size(177, 25);
             nupEdad.TabIndex = 5;
             nupEdad.Value = new decimal(new int[] { 18, 0, 0, 0 });
             // 
@@ -102,14 +102,14 @@
             // 
             txtDireccion.Location = new Point(131, 98);
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(177, 30);
+            txtDireccion.Size = new Size(177, 25);
             txtDireccion.TabIndex = 4;
             // 
             // txtNombre
             // 
             txtNombre.Location = new Point(131, 42);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(177, 30);
+            txtNombre.Size = new Size(177, 25);
             txtNombre.TabIndex = 3;
             // 
             // label3
@@ -117,7 +117,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(10, 151);
             label3.Name = "label3";
-            label3.Size = new Size(48, 23);
+            label3.Size = new Size(39, 19);
             label3.TabIndex = 2;
             label3.Text = "Edad";
             // 
@@ -126,7 +126,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(10, 101);
             label2.Name = "label2";
-            label2.Size = new Size(81, 23);
+            label2.Size = new Size(65, 19);
             label2.TabIndex = 1;
             label2.Text = "Dirección";
             // 
@@ -135,7 +135,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(10, 49);
             label1.Name = "label1";
-            label1.Size = new Size(73, 23);
+            label1.Size = new Size(59, 19);
             label1.TabIndex = 0;
             label1.Text = "Nombre";
             // 
@@ -156,7 +156,7 @@
             rbNoBinario.AutoSize = true;
             rbNoBinario.Location = new Point(19, 124);
             rbNoBinario.Name = "rbNoBinario";
-            rbNoBinario.Size = new Size(112, 27);
+            rbNoBinario.Size = new Size(91, 23);
             rbNoBinario.TabIndex = 10;
             rbNoBinario.TabStop = true;
             rbNoBinario.Text = "No Binario";
@@ -167,7 +167,7 @@
             rbFemenino.AutoSize = true;
             rbFemenino.Location = new Point(18, 82);
             rbFemenino.Name = "rbFemenino";
-            rbFemenino.Size = new Size(106, 27);
+            rbFemenino.Size = new Size(87, 23);
             rbFemenino.TabIndex = 9;
             rbFemenino.TabStop = true;
             rbFemenino.Text = "Femenino";
@@ -178,7 +178,7 @@
             rbMasculino.AutoSize = true;
             rbMasculino.Location = new Point(18, 33);
             rbMasculino.Name = "rbMasculino";
-            rbMasculino.Size = new Size(108, 27);
+            rbMasculino.Size = new Size(89, 23);
             rbMasculino.TabIndex = 8;
             rbMasculino.TabStop = true;
             rbMasculino.Text = "Masculino";
@@ -201,7 +201,7 @@
             chkJavaScript.AutoSize = true;
             chkJavaScript.Location = new Point(18, 87);
             chkJavaScript.Name = "chkJavaScript";
-            chkJavaScript.Size = new Size(107, 27);
+            chkJavaScript.Size = new Size(88, 23);
             chkJavaScript.TabIndex = 13;
             chkJavaScript.Text = "JavaScript";
             chkJavaScript.UseVisualStyleBackColor = true;
@@ -211,7 +211,7 @@
             chkCplus.AutoSize = true;
             chkCplus.Location = new Point(18, 58);
             chkCplus.Name = "chkCplus";
-            chkCplus.Size = new Size(67, 27);
+            chkCplus.Size = new Size(57, 23);
             chkCplus.TabIndex = 12;
             chkCplus.Text = "C++";
             chkCplus.UseVisualStyleBackColor = true;
@@ -222,7 +222,7 @@
             chkc.FlatStyle = FlatStyle.Flat;
             chkc.Location = new Point(18, 29);
             chkc.Name = "chkc";
-            chkc.Size = new Size(49, 27);
+            chkc.Size = new Size(42, 23);
             chkc.TabIndex = 11;
             chkc.Text = "C#";
             chkc.UseVisualStyleBackColor = true;
@@ -230,11 +230,11 @@
             // lbPais
             // 
             lbPais.FormattingEnabled = true;
-            lbPais.ItemHeight = 23;
+            lbPais.ItemHeight = 17;
             lbPais.Items.AddRange(new object[] { "Argentina", "Chile ", "Uruguay" });
             lbPais.Location = new Point(34, 322);
             lbPais.Name = "lbPais";
-            lbPais.Size = new Size(345, 96);
+            lbPais.Size = new Size(345, 89);
             lbPais.TabIndex = 7;
             // 
             // label4
@@ -242,7 +242,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(34, 283);
             label4.Name = "label4";
-            label4.Size = new Size(39, 23);
+            label4.Size = new Size(33, 19);
             label4.TabIndex = 4;
             label4.Text = "País";
             // 
@@ -259,10 +259,10 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(9F, 23F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(726, 519);
+            ClientSize = new Size(726, 451);
             Controls.Add(btoIngresar);
             Controls.Add(label4);
             Controls.Add(lbPais);

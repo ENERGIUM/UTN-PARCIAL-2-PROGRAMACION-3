@@ -21,9 +21,9 @@ namespace PracticaForm
 
         private void nuevoRegistroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 registro = new Form1();
-            registro.MdiParent = this;
-            registro.Show();
+                Form1 registro = new Form1();
+                registro.MdiParent = this;
+                registro.Show();
         }
 
         private char separador = Path.DirectorySeparatorChar;
