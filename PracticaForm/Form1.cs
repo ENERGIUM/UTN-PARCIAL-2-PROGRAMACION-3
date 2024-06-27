@@ -110,6 +110,7 @@ namespace PracticaForm
 
                     if (ing.Curso[2].CompareTo("JavaScript") == 0)
                     {
+                        archivo = "Curso_Javascript.txt";
                         int registros = 0;
                         HashSet<string> cuitsRegistrados = new HashSet<string>();
                         if (File.Exists("." + separador + archivo))
