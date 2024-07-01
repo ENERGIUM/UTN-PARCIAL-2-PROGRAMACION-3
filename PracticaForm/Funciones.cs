@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -159,6 +160,7 @@ namespace PracticaForm
         {
             string data = "";
             bool flagCorrecto = true;
+            List<Ingresante> inscriptos = new List<Ingresante>();
             try
             {
                 try
@@ -200,30 +202,31 @@ namespace PracticaForm
                         int d7 = data.Length;
                         inscripto.Curso[numeroCurso] = data.Substring(d6 + 1, (d7 - d6 - 1));
 
-                        StreamWriter streamWriter = null;
-                        try
-                        {
-                            using (streamWriter = new StreamWriter(rutaArchivoXML, true))
-                            {
-                                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Ingresante));
-                                xmlSerializer.Serialize(streamWriter, inscripto);
-                            }
-                            streamWriter.Close();
-                            streamWriter.Dispose();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
-                            flagCorrecto = false;
-                        }
-                        finally
-                        {
-                            if (streamWriter is not null)
-                            {
-                                streamWriter.Close();
-                                streamWriter.Dispose();
-                            }
-                        }
+                        inscriptos.Add(inscripto);
+                    }
+                }
+                StreamWriter streamWriter = null;
+                try
+                {
+                    using (streamWriter = new StreamWriter(rutaArchivoXML))
+                    {
+                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Ingresante>));
+                        xmlSerializer.Serialize(streamWriter, inscriptos);
+                    }
+                    streamWriter.Close();
+                    streamWriter.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
+                    flagCorrecto = false;
+                }
+                finally
+                {
+                    if (streamWriter is not null)
+                    {
+                        streamWriter.Close();
+                        streamWriter.Dispose();
                     }
                 }
                 if (flagCorrecto)
@@ -248,6 +251,8 @@ namespace PracticaForm
         {
             string data = "";
             bool flagCorrecto = true;
+            List<Ingresante> inscriptos = new List<Ingresante>();
+
             try
             {
                 try
@@ -289,30 +294,32 @@ namespace PracticaForm
                         int d7 = data.Length;
                         inscripto.Curso[numeroCurso] = data.Substring(d6 + 1, (d7 - d6 - 1));
 
-                        StreamWriter streamWriter = null;
-                        try
-                        {
-                            using (streamWriter = new StreamWriter(rutaArchivoJSON, true))
-                            {
-                                string jsonString = JsonSerializer.Serialize(inscripto);
-                                streamWriter.WriteLine(jsonString);
-                            }
-                            streamWriter.Close();
-                            streamWriter.Dispose();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
-                            flagCorrecto = false;
-                        }
-                        finally
-                        {
-                            if (streamWriter is not null)
-                            {
-                                streamWriter.Close();
-                                streamWriter.Dispose();
-                            }
-                        }
+                        inscriptos.Add(inscripto);
+                       
+                    }
+                }
+                StreamWriter streamWriter = null;
+                try
+                {
+                    using (streamWriter = new StreamWriter(rutaArchivoJSON))
+                    {
+                        string jsonString = JsonSerializer.Serialize(inscriptos);
+                        streamWriter.WriteLine(jsonString);
+                    }
+                    streamWriter.Close();
+                    streamWriter.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("A ocurrido un error inesperado\n" + ex.Message + "\n" + ex.ToString() + "\n" + ex.HResult + "\n");
+                    flagCorrecto = false;
+                }
+                finally
+                {
+                    if (streamWriter is not null)
+                    {
+                        streamWriter.Close();
+                        streamWriter.Dispose();
                     }
                 }
                 if (flagCorrecto)
